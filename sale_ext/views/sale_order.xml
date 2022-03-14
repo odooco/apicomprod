@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="view_sale_order_description" model="ir.ui.view">
+			<field name="name">sale.order.description</field> <!-- nombre de la vista , libre debe llevar el modelo -->
+			<field name="model">sale.order</field> <!--nombre del modelo -->
+			<field name="inherit_id" ref="sale.view_order_form"/><!--1 nombre de la vista original del modelo ref de la vista -->
+			<field name="arch" type="xml">
+
+				<xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='price_unit']" position="after">
+                <field name="is_comodin" invisible="1"/>       
+            	</xpath>
+
+            	<xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='name']" position="attributes">
+   					<attribute name="attrs">{"readonly": ["&amp;","&amp;",["is_comodin","=",False],["product_type","!=","service"],["product_id","!=",False]]}</attribute>
+  				</xpath>
+
+  				<xpath expr="//field[@name='vendors_id']" position="attributes">
+    				<attribute name="attrs">{"required": [["product_id","!=",False]]}</attribute>
+    				<attribute name="options">{"no_create":true}</attribute>
+ 				</xpath>
+
+ 				<xpath expr="//field[@name='user_id']" position="before">
+    				<field name="user_comercial_id"/>
+  				</xpath>
+
+            	
+			</field>
+		</record>
+	</data>
+</odoo>
+
+

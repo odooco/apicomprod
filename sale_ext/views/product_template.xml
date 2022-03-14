@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="view_product_template_comodin" model="ir.ui.view">
+			<field name="name">product.template.view.comodin</field> <!-- nombre de la vista , libre debe llevar el modelo -->
+			<field name="model">product.template</field> <!--nombre del modelo -->
+			<field name="inherit_id" ref="product.product_template_only_form_view"/><!--1 nombre de la vista original del modelo ref de la vista -->
+			<field name="arch" type="xml">
+
+				<xpath expr="//form[@name='Product Template']/sheet[1]/div[not(@name)][1]/div[@name='options']/div[2]/label[1]" position="after">
+					<field name="is_comodin"/>					
+				</xpath> <!-- xpath dejar los espacios -->
+
+				<xpath expr="//field[@name='expense_policy']" position="after">
+    				<field name="product_brand_id"/>
+  				</xpath>
+
+			</field>
+		</record>
+	</data>
+</odoo>
+
+
