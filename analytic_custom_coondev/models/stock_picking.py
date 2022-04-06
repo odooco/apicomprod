@@ -32,6 +32,5 @@ class SaleOrder(models.Model):
         picking = self.env['stock.picking'].search([('sale_id', '=', self.id)])
         for item in picking:
             if item.sale_id:
-                item.write({'analytic_id':self.analytic_account_id}
-
-                    #revision
+                item.write({'analytic_id':self.analytic_account_id})
+        return res
