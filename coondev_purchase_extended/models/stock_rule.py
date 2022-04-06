@@ -19,10 +19,8 @@ class StockRule(models.Model):
         errors = []
         for procurement, rule in procurements:
 
-            # Get the schedule date in order to find a valid seller
             procurement_date_planned = fields.Datetime.from_string(procurement.values['date_planned'])
             schedule_date = (procurement_date_planned - relativedelta(days=procurement.company_id.po_lead))
-
             supplier = False
             if procurement.values.get('supplierinfo_id'):
                 supplier = procurement.values['supplierinfo_id']
@@ -140,6 +138,6 @@ class StockRule(models.Model):
 
     def _prepare_purchase_order(self, company_id, origins, values):
         result = super(StockRule, self)._prepare_purchase_order(company_id, origins, values)
-        raise ValidationError(values)
+        #raise ValidationError(values)
         #result['']
         return result
